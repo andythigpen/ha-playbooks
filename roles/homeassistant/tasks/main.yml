@@ -3,6 +3,7 @@
   import_tasks: python.yml
 
 - name: Pull hass configuration
+  become: yes
   git:
     repo: https://github.com/andythigpen/hass-config.git
     dest: /srv/hass-config

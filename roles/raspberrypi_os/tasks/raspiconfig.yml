@@ -1,0 +1,56 @@
+---
+- name: Expand rootfs
+  tags: raspiconfig
+  become: yes
+  shell: raspi-config --expand-rootfs
+  when: init_rpi|bool
+
+- name: Set GPU memory to lowest
+  tags: raspiconfig
+  become: yes
+  shell: raspi-config nonint do_memory_split 16
+  when: init_rpi|bool
+
+- name: Check SPI
+  tags: raspiconfig
+  become: yes
+  register: spi_check
+  shell: raspi-config nonint get_spi
+  when: enable_spi|bool
+
+- name: Enable SPI
+  tags: raspiconfig
+  become: yes
+  shell: raspi-config nonint do_spi 0
+  when: enable_spi and spi_check.stdout == "1"
+
+- name: Check I2C
+  tags: raspiconfig
+  become: yes
+  register: i2c_check
+  shell: raspi-config nonint get_i2c
+  when: enable_i2c|bool
+
+- name: Enable I2C
+  tags: raspiconfig
+  become: yes
+  shell: raspi-config nonint do_i2c 0
+  when: enable_i2c and i2c_check.stdout == "1"
+
+- name: Check locale
+  tags: raspiconfig
+  become: yes
+  shell: echo "$LANG"
+  register: locale_check
+
+- name: Change locale to en_US
+  tags: raspiconfig
+  become: yes
+  shell: raspi-config nonint do_change_locale "en_US.UTF-8"
+  when: locale_check.stdout != "en_US.UTF-8"
+
+- name: Set timezone to America/Chicago
+  tags: raspiconfig
+  become: yes
+  timezone:
+    name: America/Chicago

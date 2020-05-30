@@ -1,0 +1,4 @@
+---
+enable_spi: False
+enable_i2c: False
+init_rpi: False

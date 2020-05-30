@@ -1,1 +1,3 @@
 - import_playbook: homeassistant.yml
+- import_playbook: sensorhub.yml
+- import_playbook: backlight.yml

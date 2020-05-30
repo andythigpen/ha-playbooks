@@ -14,3 +14,5 @@
     pkg:
       - git
       - vim
+
+- import_tasks: raspiconfig.yml
