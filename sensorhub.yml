@@ -1,0 +1,4 @@
+- hosts: sensorhub
+  roles:
+    - raspberrypi_os
+    - mysensors

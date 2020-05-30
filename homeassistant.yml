@@ -1,0 +1,4 @@
+- hosts: homeassistant
+  roles:
+    - raspberrypi_os
+    - homeassistant

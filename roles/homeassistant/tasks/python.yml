@@ -1,0 +1,6 @@
+---
+- name: Install python3 and pip
+  apt:
+    pkg:
+      - python3
+      - python3-pip

@@ -1,0 +1,45 @@
+---
+- name: fetch mysensors git repo
+  tags: mysensors
+  git:
+    repo: https://github.com/mysensors/MySensors.git
+    dest: /home/pi/mysensors
+
+- name: install build tools
+  tags: mysensors
+  become: yes
+  apt:
+    pkg:
+      - build-essential
+      - g++
+
+- name: configure mysensors gateway
+  tags: mysensors
+  shell: ./configure --my-transport=rf24 --my-gateway=ethernet --my-port=5003
+  args:
+    chdir: /home/pi/mysensors
+    creates: Makefile.inc
+
+- name: build mysensors gateway
+  tags: mysensors
+  shell: make
+  args:
+    chdir: /home/pi/mysensors
+    creates: bin/mysgw
+
+- name: install mysensors gateway
+  tags: mysensors
+  become: yes
+  shell: make install
+  args:
+    chdir: /home/pi/mysensors
+    creates: /usr/local/bin/mysgw
+
+- name: enable and start mysgw service
+  tags: mysensors
+  become: yes
+  systemd:
+    daemon_reload: yes
+    state: started
+    enabled: yes
+    name: mysgw.service

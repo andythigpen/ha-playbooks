@@ -1,0 +1,13 @@
+[raspberrypi]
+ha_pi
+sensorhub_pi
+backlight_pi
+
+[homeassistant]
+ha_pi
+
+[sensorhub]
+sensorhub_pi
+
+[backlight]
+backlight_pi
