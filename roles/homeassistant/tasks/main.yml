@@ -1,9 +1,9 @@
 ---
-- name: Install python
+- name: install python
   import_tasks: python.yml
 
-- name: Pull hass configuration
-  become: yes
-  git:
-    repo: https://github.com/andythigpen/hass-config.git
-    dest: /srv/hass-config
+- name: install homeassistant
+  import_tasks: homeassistant.yml
+
+- name: install appdaemon
+  import_tasks: appdaemon.yml

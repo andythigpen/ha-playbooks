@@ -1,0 +1,36 @@
+- name: Create virtualenv directory if it does not exist
+  tags: appdaemon
+  become: yes
+  file:
+    path: /srv/appdaemon
+    state: directory
+    mode: '0755'
+    owner: pi
+    group: pi
+
+- name: install appdaemon
+  tags: appdaemon
+  pip:
+    name: appdaemon=={{ appdaemon_version }}
+    virtualenv: /srv/appdaemon
+    virtualenv_python: python3.7
+
+- name: copy systemd service file
+  tags: appdaemon
+  become: yes
+  copy:
+    src: files/appdaemon.service
+    dest: /etc/systemd/system/appdaemon.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: enable and start appdaemon service
+  tags: appdaemon
+  become: yes
+  systemd:
+    daemon_reload: yes
+    daemon_reexec: yes
+    state: started
+    enabled: yes
+    name: appdaemon.service

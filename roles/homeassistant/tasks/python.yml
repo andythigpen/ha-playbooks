@@ -1,8 +1,17 @@
 ---
-- name: Install python3 and pip
+- name: install python3 and pip
   tags: install
   become: yes
   apt:
     pkg:
       - python3
       - python3-pip
+      # for ansible
+      - python-setuptools
+
+- name: install virtualenv
+  tags: install
+  become: yes
+  pip:
+    name: virtualenv
+    executable: pip3

@@ -1,3 +1,4 @@
 - hosts: backlight
   roles:
     - raspberrypi_os
+    - hyperion

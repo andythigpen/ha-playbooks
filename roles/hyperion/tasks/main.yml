@@ -1,0 +1,10 @@
+---
+- name: Install python
+  import_tasks: python.yml
+
+- name: Install hyperion from deb
+  tags: install
+  become: yes
+  apt:
+    deb: "{{ hyperion_deb }}"
+    state: present

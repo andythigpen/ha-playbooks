@@ -54,3 +54,9 @@
   become: yes
   timezone:
     name: America/Chicago
+
+- name: Set hostname
+  tags: raspiconfig
+  become: yes
+  shell: raspi-config nonint do_hostname {{ hostname }}
+  when: init_rpi|bool

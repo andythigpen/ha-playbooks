@@ -1,0 +1,12 @@
+[Unit]
+Description=AppDaemon
+After=homeassistant.service
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/srv/appdaemon/bin/appdaemon -c /home/pi/.homeassistant
+WorkingDirectory=/home/pi/.homeassistant
+
+[Install]
+WantedBy=multi-user.target

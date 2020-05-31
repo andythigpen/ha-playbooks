@@ -1,0 +1,43 @@
+- name: pull hass configuration
+  tags: hass
+  become: yes
+  git:
+    repo: https://github.com/andythigpen/hass-config.git
+    dest: /home/pi/.homeassistant
+
+- name: Create virtualenv directory if it does not exist
+  tags: hass
+  become: yes
+  file:
+    path: /srv/homeassistant
+    state: directory
+    mode: '0755'
+    owner: pi
+    group: pi
+
+- name: install homeassistant
+  tags: hass
+  pip:
+    name: homeassistant=={{ homeassistant_version }}
+    virtualenv: /srv/homeassistant
+    virtualenv_python: python3.7
+
+- name: copy systemd service file
+  tags: hass
+  become: yes
+  copy:
+    src: files/homeassistant.service
+    dest: /etc/systemd/system/homeassistant.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: enable and start homeassistant service
+  tags: hass
+  become: yes
+  systemd:
+    daemon_reload: yes
+    daemon_reexec: yes
+    state: started
+    enabled: yes
+    name: homeassistant.service
