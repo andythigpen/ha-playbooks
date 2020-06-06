@@ -1,5 +1,5 @@
 ---
-- name: Update all packages
+- name: update all packages
   tags: os
   become: yes
   apt:
@@ -7,12 +7,17 @@
     update_cache: yes
     autoremove: yes
 
-- name: Install base requirements
+- name: install base requirements
   tags: os
   become: yes
   apt:
     pkg:
       - git
       - vim
+
+- name: generate an SSH keypair
+  tags: os
+  openssh_keypair:
+    path: /home/pi/.ssh/id_rsa
 
 - import_tasks: raspiconfig.yml

@@ -1,10 +1,20 @@
 ---
-- name: Install python
+- name: install python
   import_tasks: python.yml
 
-- name: Install hyperion from deb
+- name: install hyperion from deb
   tags: install
   become: yes
   apt:
     deb: "{{ hyperion_deb }}"
     state: present
+
+- name: copy custom effects
+  tags: hyperion
+  become: yes
+  copy:
+    src: files/custom-effects/
+    dest: /usr/share/hyperion/effects/
+    owner: root
+    group: root
+    mode: '0644'
