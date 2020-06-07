@@ -1,0 +1,11 @@
+[Unit]
+Description=Fix v4l2 device settings after Hyperion open
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/v4l2-settings.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -9,6 +9,43 @@
     deb: "{{ hyperion_deb }}"
     state: present
 
+- name: install inotify-tools
+  tags: v4l2
+  become: yes
+  apt:
+    pkg:
+      - inotify-tools
+
+- name: copy v4l2-settings
+  tags: v4l2
+  become: yes
+  copy:
+    src: files/v4l2-settings.sh
+    dest: /usr/local/bin/
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: copy v4l2-settings service
+  tags: v4l2
+  become: yes
+  copy:
+    src: files/v4l2-settings.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: enable and start v4l2-settings service
+  tags: v4l2
+  become: yes
+  systemd:
+    daemon_reload: yes
+    daemon_reexec: yes
+    state: started
+    enabled: yes
+    name: v4l2-settings.service
+
 - name: copy custom effects
   tags: hyperion
   become: yes
