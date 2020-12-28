@@ -3,5 +3,6 @@ enable_spi: False
 enable_i2c: False
 init_rpi: False
 hyperion_deb: https://github.com/hyperion-project/hyperion.ng/releases/download/2.0.0-alpha.8/Hyperion-2.0.0-alpha.8-Linux-armv6l.deb
-homeassistant_version: "0.112.*"
+homeassistant_version: "0.118.*"
 appdaemon_version: "4.0.*"
+python_version: "3.9.0"

@@ -15,3 +15,94 @@
   pip:
     name: virtualenv
     executable: pip3
+
+# Home Assistant has dropped support for 3.7 which is the version packaged with buster
+- name: install dependencies for compiling python3
+  tags: install
+  become: yes
+  apt:
+    pkg:
+      - build-essential
+      - tk-dev
+      - libncurses5-dev
+      - libncursesw5-dev
+      - libreadline6-dev
+      - libdb5.3-dev
+      - libgdbm-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - libbz2-dev
+      - libexpat1-dev
+      - liblzma-dev
+      - zlib1g-dev
+      - libffi-dev
+
+- name: create python source directory
+  tags: install
+  become: yes
+  file:
+    path: /opt/python/Python-{{ python_version }}
+    state: directory
+
+- name: download Python {{ python_version }}
+  tags: install
+  become: yes
+  get_url:
+    dest: /opt/python/Python-{{ python_version }}.tar.xz
+    url: https://www.python.org/ftp/python/{{ python_version }}/Python-{{ python_version }}.tar.xz
+
+- name: unarchive Python {{ python_version }}
+  tags: install
+  become: yes
+  unarchive:
+    dest: /opt/python/
+    src: /opt/python/Python-{{ python_version }}.tar.xz
+    remote_src: yes
+    creates: /opt/python/Python-{{ python_version }}/Makefile
+
+- name: configure Python {{ python_version }}
+  tags: install
+  become: yes
+  command: ./configure --prefix=/usr/local
+  args:
+    chdir: /opt/python/Python-{{ python_version }}
+    creates: /opt/python/Python-{{ python_version }}/config.log
+
+- name: make Python {{ python_version }}
+  tags: install
+  become: yes
+  command: make -j4
+  args:
+    chdir: /opt/python/Python-{{ python_version }}
+    creates: /opt/python/Python-{{ python_version }}/python
+
+- tags: install
+  debug:
+    msg: "python_version{{ python_version | regex_replace('^([0-9])\\.([0-9]*).*', '\\1.\\2') }}"
+
+- name: install Python {{ python_version }}
+  tags: install
+  become: yes
+  command: make altinstall
+  args:
+    chdir: /opt/python/Python-{{ python_version }}
+    creates: "/usr/local/bin/python{{ python_version | regex_replace('^([0-9])\\.([0-9]*).*', '\\1.\\2') }}"
+
+- name: ensure pip for {{ python_version }}
+  tags: install
+  become: yes
+  command: "/usr/local/bin/python{{ python_version | regex_replace('^([0-9])\\.([0-9]*).*', '\\1.\\2') }} -m ensurepip"
+
+- name: install virtualenv for {{ python_version }}
+  tags: install
+  become: yes
+  pip:
+    name: virtualenv
+    executable: "/usr/local/bin/pip{{ python_version | regex_replace('^([0-9])\\.([0-9]*).*', '\\1.\\2') }}"
+
+# - name: Update alternatives
+#   tags: install
+#   become: yes
+#   alternatives:
+#     name: python
+#     path: "/usr/local/bin/python{{ python_version | regex_replace('^([0-9])\\.([0-9]*).*', '\\1.\\2') }}"

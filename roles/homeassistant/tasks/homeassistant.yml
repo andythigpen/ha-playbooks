@@ -1,3 +1,16 @@
+- name: install HA dependencies
+  tags: install
+  become: yes
+  apt:
+    pkg:
+      # needed by an image dependency required by HA core for some reason now...
+      - libopenjp2-7
+      - libtiff5
+      - libjpeg-dev
+      - zlib1g-dev
+      - libfreetype6-dev
+      - liblcms1-dev
+
 - name: pull hass configuration
   tags: hass
   become: yes
@@ -20,7 +33,8 @@
   pip:
     name: homeassistant=={{ homeassistant_version }}
     virtualenv: /srv/homeassistant
-    virtualenv_python: python3.7
+    virtualenv_python: python3.9
+  notify: Restart HA
 
 - name: copy systemd service file
   tags: hass
