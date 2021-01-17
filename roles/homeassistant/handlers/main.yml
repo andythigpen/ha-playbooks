@@ -1,6 +1,7 @@
 - name: Restart HA
   async: 60
   poll: 1
+  become: true
   systemd:
     state: restarted
     name: homeassistant.service
