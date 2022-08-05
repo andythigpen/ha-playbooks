@@ -7,3 +7,6 @@
 
 - name: install appdaemon
   import_tasks: appdaemon.yml
+
+- name: install media apps
+  import_tasks: media.yml
