@@ -13,7 +13,7 @@
   pip:
     name: appdaemon=={{ appdaemon_version }}
     virtualenv: /srv/appdaemon
-    virtualenv_python: python3.7
+    virtualenv_python: python3.9
 
 - name: copy systemd service file
   tags: appdaemon
