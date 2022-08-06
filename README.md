@@ -9,6 +9,16 @@ Required packages:
 
 ## Examples
 
+Update home-assistant:
+```
+ansible-playbook -i hosts -l homeassistant homeassistant.yml
+```
+
+Update only home-assistant (not system):
+```
+ansible-playbook -i hosts -l homeassistant -t hass homeassistant.yml
+```
+
 Provision mysensors gateway:
 
 ```

@@ -36,6 +36,8 @@
     virtualenv_python: python3.9
   notify: Restart HA
 
+# aiodiscover,scapy
+
 - name: copy systemd service file
   tags: hass
   become: yes
