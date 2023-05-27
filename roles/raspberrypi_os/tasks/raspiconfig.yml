@@ -49,11 +49,11 @@
   shell: raspi-config nonint do_change_locale "en_US.UTF-8"
   when: locale_check.stdout != "en_US.UTF-8"
 
-- name: Set timezone to America/Chicago
+- name: Set timezone to America/New_York
   tags: raspiconfig
   become: yes
   timezone:
-    name: America/Chicago
+    name: America/New_York
 
 - name: Set hostname
   tags: raspiconfig

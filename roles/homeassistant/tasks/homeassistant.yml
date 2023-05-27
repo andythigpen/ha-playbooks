@@ -33,7 +33,7 @@
   pip:
     name: homeassistant=={{ homeassistant_version }}
     virtualenv: /srv/homeassistant
-    virtualenv_python: python3.9
+    virtualenv_python: python3.11
   notify: Restart HA
 
 # aiodiscover,scapy
