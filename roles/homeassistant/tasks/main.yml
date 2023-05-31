@@ -4,6 +4,3 @@
 
 - name: install homeassistant
   import_tasks: homeassistant.yml
-
-- name: install media apps
-  import_tasks: media.yml

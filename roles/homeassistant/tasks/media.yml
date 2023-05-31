@@ -1,7 +1,0 @@
----
-- name: install minidlna
-  tags: install
-  become: yes
-  apt:
-    pkg:
-      - minidlna
