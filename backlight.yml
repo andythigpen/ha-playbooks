@@ -2,3 +2,4 @@
   roles:
     - raspberrypi_os
     - hyperion
+    - prometheus_node

@@ -1,0 +1,7 @@
+- name: Restart prometheus
+  async: 60
+  poll: 1
+  become: true
+  systemd:
+    state: restarted
+    name: prometheus.service

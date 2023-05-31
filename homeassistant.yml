@@ -3,3 +3,5 @@
     - raspberrypi_os
     - homeassistant
     - webdav
+    - prometheus
+    - prometheus_node

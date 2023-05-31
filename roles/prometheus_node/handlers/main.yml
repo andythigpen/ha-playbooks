@@ -1,0 +1,7 @@
+- name: Restart prometheus node exporter
+  async: 60
+  poll: 1
+  become: true
+  systemd:
+    state: restarted
+    name: node_exporter.service

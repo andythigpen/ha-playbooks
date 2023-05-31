@@ -2,3 +2,4 @@
   roles:
     - raspberrypi_os
     - mysensors
+    - prometheus_node
