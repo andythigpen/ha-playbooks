@@ -44,6 +44,16 @@
     group: pi
     mode: '0644'
 
+- name: copy alerts file
+  tags: install
+  become: yes
+  copy:
+    src: files/host_alerts.yml
+    dest: /opt/prometheus/current/host_alerts.yml
+    owner: pi
+    group: pi
+    mode: '0644'
+
 - name: copy systemd service file
   tags: install
   become: yes
