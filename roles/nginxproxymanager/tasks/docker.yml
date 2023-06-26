@@ -1,0 +1,8 @@
+---
+- name: install docker and docker-compose
+  tags: install
+  become: yes
+  apt:
+    pkg:
+      - docker.io
+      - docker-compose

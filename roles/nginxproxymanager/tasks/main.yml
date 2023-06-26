@@ -1,0 +1,6 @@
+---
+- name: install docker
+  import_tasks: docker.yml
+
+- name: install nginxproxymanager
+  import_tasks: nginxproxymanager.yml

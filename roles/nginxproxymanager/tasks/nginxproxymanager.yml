@@ -1,0 +1,25 @@
+---
+- name: Create directory if it does not exist
+  become: yes
+  file:
+    path: /opt/nginxproxymanager
+    state: directory
+    mode: '0755'
+    owner: pi
+    group: pi
+
+- name: copy docker compose file
+  tags: install
+  become: yes
+  copy:
+    src: files/docker-compose.yml
+    dest: /opt/nginxproxymanager
+    owner: pi
+    group: pi
+    mode: '0644'
+
+- name: start docker-compose containers
+  tags: install
+  become: yes
+  community.docker.docker_compose:
+    project_src: /opt/nginxproxymanager

@@ -5,3 +5,4 @@
     - webdav
     - prometheus
     - prometheus_node
+    - nginxproxymanager
