@@ -1,9 +1,4 @@
 ---
-- name: Install python3-docker package
-  apt:
-    pkg:
-      - python3-docker
-
 - name: Create docker volume
   community.docker.docker_volume:
     name: portainer_data
@@ -11,7 +6,7 @@
 - name: Create portainer container
   community.docker.docker_container:
     name: portainer
-    image: portainer/portainer-ce:{{ portainer_version }}
+    image: portainer/portainer-ce:{{ portainer_tag }}
     state: started
     restart_policy: "always"
     container_default_behavior: "no_defaults"

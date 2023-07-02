@@ -15,3 +15,9 @@
       - ca-certificates
       - curl
       - gnupg
+      # the docker python package is a prerequisite of the community.docker module
+      - python3-docker
+
+- name: Set timezone
+  community.general.timezone:
+    name: "{{ timezone }}"

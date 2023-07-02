@@ -1,0 +1,18 @@
+---
+- name: Pull hass configuration
+  git:
+    repo: https://github.com/andythigpen/hass-config.git
+    dest: /srv/homeassistant
+
+- name: Create homeassistant container
+  community.docker.docker_container:
+    name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:{{ homeassistant_tag }}
+    state: started
+    restart_policy: "unless-stopped"
+    container_default_behavior: "no_defaults"
+    network_mode: host
+    volumes:
+      - /srv/homeassistant:/config
+    env:
+      TZ: "{{ timezone }}"

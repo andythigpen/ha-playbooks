@@ -6,3 +6,5 @@
       become: yes
     - name: portainer
       become: yes
+    - name: homeassistant_container
+      become: yes
