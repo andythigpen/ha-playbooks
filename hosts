@@ -11,3 +11,6 @@ sensorhub_pi
 
 [backlight]
 backlight_pi
+
+[debian]
+debian_server

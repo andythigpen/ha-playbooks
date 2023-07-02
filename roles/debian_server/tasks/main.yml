@@ -1,0 +1,17 @@
+---
+- name: update all packages
+  tags: os
+  apt:
+    upgrade: yes
+    update_cache: yes
+    autoremove: yes
+
+- name: install base requirements
+  tags: os
+  apt:
+    pkg:
+      - git
+      - vim
+      - ca-certificates
+      - curl
+      - gnupg

@@ -1,0 +1,8 @@
+- hosts: debian
+  roles:
+    - name: debian_server
+      become: yes
+    - name: geerlingguy.docker
+      become: yes
+    - name: portainer
+      become: yes
