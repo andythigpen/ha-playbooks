@@ -8,3 +8,5 @@
       become: yes
     - name: homeassistant_container
       become: yes
+    - name: nginxproxymanager_container
+      become: yes
