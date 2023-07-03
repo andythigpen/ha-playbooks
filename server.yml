@@ -12,3 +12,5 @@
       become: yes
     - name: webdav
       become: yes
+    - name: prometheus_node
+      become: yes

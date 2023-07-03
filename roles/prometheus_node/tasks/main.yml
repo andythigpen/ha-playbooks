@@ -1,52 +1,42 @@
 ---
 - name: create prometheus node exporter source directory
   tags: install
-  become: yes
   file:
     path: /opt/node_exporter
     state: directory
 
-- name: download prometheus node exporter {{ prometheus_node_version }}
+- name: download prometheus node exporter
   tags: install
-  become: yes
   get_url:
     dest: /opt/node_exporter/node_exporter-{{ prometheus_node_version }}.tar.gz
     url: https://github.com/prometheus/node_exporter/releases/download/v{{ prometheus_node_version }}/node_exporter-{{ prometheus_node_version }}.linux-{{ prometheus_node_arch }}.tar.gz
 
-- name: unarchive prometheus node exporter {{ prometheus_node_version }}
+- name: unarchive prometheus node exporter
   tags: install
-  become: yes
   unarchive:
     dest: /opt/node_exporter/
     src: /opt/node_exporter/node_exporter-{{ prometheus_node_version }}.tar.gz
     remote_src: yes
     creates: /opt/node_exporter/node_exporter-{{ prometheus_node_version }}.linux-{{ prometheus_node_arch }}/node_exporter
-    owner: pi
-    group: pi
 
 - name: Create a symbolic link
   tags: install
-  become: yes
   ansible.builtin.file:
     src: /opt/node_exporter/node_exporter-{{ prometheus_node_version }}.linux-{{ prometheus_node_arch }}
     dest: /opt/node_exporter/current
-    owner: pi
-    group: pi
     state: link
 
 - name: copy systemd service file
   tags: install
-  become: yes
   copy:
     src: files/node_exporter.service
     dest: /etc/systemd/system/node_exporter.service
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: enable and start prometheus node service
   tags: install
-  become: yes
   systemd:
     daemon_reload: yes
     daemon_reexec: yes
