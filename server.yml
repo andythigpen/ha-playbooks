@@ -10,3 +10,5 @@
       become: yes
     - name: nginxproxymanager_container
       become: yes
+    - name: webdav
+      become: yes

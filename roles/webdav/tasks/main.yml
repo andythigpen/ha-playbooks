@@ -1,7 +1,6 @@
 ---
 - name: install webdav
   tags: install
-  become: yes
   apt:
     pkg:
       - nginx-light
@@ -9,10 +8,9 @@
 
 - name: copy site configuration
   tags: webdav
-  become: yes
   copy:
     src: files/default
     dest: /etc/nginx/sites-available/default
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
