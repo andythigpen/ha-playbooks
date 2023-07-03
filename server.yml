@@ -14,3 +14,5 @@
       become: yes
     - name: prometheus_node
       become: yes
+    - name: prometheus_container
+      become: yes

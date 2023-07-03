@@ -1,0 +1,30 @@
+---
+- name: Create prometheus directory
+  ansible.builtin.file:
+    path: /srv/prometheus
+    state: directory
+    mode: "0755"
+
+- name: Copy config file
+  copy:
+    src: files/prometheus.yml
+    dest: /srv/prometheus/prometheus.yml
+    mode: "0644"
+
+- name: Copy alerts file
+  copy:
+    src: files/host_alerts.yml
+    dest: /srv/prometheus/host_alerts.yml
+    mode: "0644"
+
+- name: Create prometheus container
+  community.docker.docker_container:
+    name: prometheus
+    image: prom/prometheus:{{ prometheus_tag }}
+    state: started
+    restart_policy: "unless-stopped"
+    network_mode: host
+    container_default_behavior: "no_defaults"
+    volumes:
+      - /srv/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /srv/prometheus/host_alerts.yml:/etc/prometheus/host_alerts.yml
