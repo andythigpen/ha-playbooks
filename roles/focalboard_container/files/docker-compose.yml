@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - /srv/focalboard/db:/var/lib/postgresql/data
+      - /srv/focalboard/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+  focalboard:
+    image: mattermost/focalboard:7.11.0
+    restart: unless-stopped

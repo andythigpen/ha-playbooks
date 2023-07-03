@@ -16,3 +16,5 @@
       become: yes
     - name: prometheus_container
       become: yes
+    - name: focalboard_container
+      become: yes

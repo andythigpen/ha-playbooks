@@ -1,0 +1,20 @@
+---
+- name: Create focalboard directory
+  ansible.builtin.file:
+    path: /srv/focalboard
+    state: directory
+    mode: "0755"
+    owner: nobody
+    group: nogroup
+
+- name: Create focalboard container
+  community.docker.docker_container:
+    name: focalboard
+    image: mattermost/focalboard:{{ focalboard_tag }}
+    state: started
+    restart_policy: "unless-stopped"
+    container_default_behavior: "no_defaults"
+    ports:
+      - "8001:8000"
+    volumes:
+      - /srv/focalboard/data:/opt/focalboard/data
