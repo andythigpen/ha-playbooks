@@ -1,0 +1,19 @@
+---
+- name: Create mealie directory
+  ansible.builtin.file:
+    path: /srv/mealie
+    state: directory
+    mode: "0755"
+
+- name: Create mealie container
+  community.docker.docker_container:
+    name: mealie
+    image: hkotel/mealie:{{ mealie_tag }}
+    state: started
+    restart_policy: "unless-stopped"
+    user: root
+    ports:
+      - "9925:80"
+    container_default_behavior: "no_defaults"
+    volumes:
+      - /srv/mealie:/app/data

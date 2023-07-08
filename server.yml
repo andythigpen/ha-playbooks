@@ -20,3 +20,5 @@
       become: yes
     - name: grafana_container
       become: yes
+    - name: mealie_container
+      become: yes
