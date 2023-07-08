@@ -18,3 +18,5 @@
       - "8001:8000"
     volumes:
       - /srv/focalboard/data:/opt/focalboard/data
+    labels:
+      wud.tag.include: '^\d+\.\d+\.\d+$'

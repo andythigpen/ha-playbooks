@@ -1,0 +1,15 @@
+---
+- name: Create wud container
+  community.docker.docker_container:
+    name: wud
+    image: ghcr.io/fmartinou/whats-up-docker
+    state: started
+    restart_policy: "unless-stopped"
+    user: root
+    ports:
+      - "3001:3000"
+    container_default_behavior: "no_defaults"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    env:
+      WUD_WATCHER_LOCAL_CRON: "0 1 * * *"

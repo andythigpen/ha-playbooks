@@ -16,3 +16,5 @@
       - /srv/homeassistant:/config
     env:
       TZ: "{{ timezone }}"
+    labels:
+      wud.tag.include: '^\d+\.\d+\.\d+$'

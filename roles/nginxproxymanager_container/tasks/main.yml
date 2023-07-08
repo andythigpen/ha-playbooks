@@ -19,3 +19,5 @@
     volumes:
       - /srv/nginxproxymanager/data:/data
       - /srv/nginxproxymanager/letsencrypt:/etc/letsencrypt
+    labels:
+      wud.tag.include: '^\d+\.\d+\.\d+$'

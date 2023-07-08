@@ -20,3 +20,5 @@
     env:
       GF_ANALYTICS_REPORTING_ENABLED: "false"
       GF_SECURITY_ALLOW_EMBEDDING: "true"
+    labels:
+      wud.tag.include: '^\d+\.\d+\.\d+$'
