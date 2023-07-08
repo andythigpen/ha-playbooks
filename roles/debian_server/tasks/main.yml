@@ -16,6 +16,7 @@
       - curl
       - gnupg
       - rsync
+      - net-tools
       # the docker python package is a prerequisite of the community.docker module
       - python3-docker
 

@@ -1,0 +1,22 @@
+---
+- name: Create grafana directory
+  ansible.builtin.file:
+    path: /srv/grafana
+    state: directory
+    mode: "0755"
+
+- name: Create grafana container
+  community.docker.docker_container:
+    name: grafana
+    image: grafana/grafana-oss:{{ grafana_tag }}
+    state: started
+    restart_policy: "unless-stopped"
+    user: root
+    ports:
+      - "3000:3000"
+    container_default_behavior: "no_defaults"
+    volumes:
+      - /srv/grafana/data:/var/lib/grafana
+    env:
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_SECURITY_ALLOW_EMBEDDING: "true"

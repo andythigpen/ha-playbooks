@@ -18,3 +18,5 @@
       become: yes
     - name: focalboard_container
       become: yes
+    - name: grafana_container
+      become: yes
