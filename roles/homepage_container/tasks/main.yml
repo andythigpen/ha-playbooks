@@ -31,3 +31,5 @@
     volumes:
       - /srv/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      wud.tag.include: '^v\d+\.\d+\.\d+$'
