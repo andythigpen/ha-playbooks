@@ -28,6 +28,7 @@
     volumes:
       - /srv/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - /srv/prometheus/host_alerts.yml:/etc/prometheus/host_alerts.yml
+      - prometheus:/prometheus
     labels:
       wud.tag.include: '^v\d+\.\d+\.\d+$'
       homepage.group: Monitoring
