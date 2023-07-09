@@ -1,0 +1,33 @@
+---
+- name: Create homepage directory
+  ansible.builtin.file:
+    path: /srv/homepage
+    state: directory
+    mode: "0755"
+
+- name: Copy config file
+  copy:
+    src: "files/{{ item }}"
+    dest: "/srv/homepage/{{ item }}"
+    mode: "0644"
+  loop:
+    - bookmarks.yaml
+    - docker.yaml
+    - kubernetes.yaml
+    - services.yaml
+    - settings.yaml
+    - widgets.yaml
+
+- name: Create homepage container
+  community.docker.docker_container:
+    name: homepage
+    image: ghcr.io/benphelps/homepage:{{ homepage_tag }}
+    state: started
+    restart_policy: "unless-stopped"
+    user: root
+    ports:
+      - "4000:3000"
+    container_default_behavior: "no_defaults"
+    volumes:
+      - /srv/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock

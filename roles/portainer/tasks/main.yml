@@ -19,3 +19,8 @@
       - portainer_data:/data
     labels:
       wud.tag.include: '^\d+\.\d+\.\d+$'
+      homepage.group: Home
+      homepage.name: Portainer
+      homepage.icon: portainer.png
+      homepage.href: https://portainer.atlocal.duckdns.org
+      homepage.description: Docker container dashboard

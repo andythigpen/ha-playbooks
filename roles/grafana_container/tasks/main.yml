@@ -22,3 +22,8 @@
       GF_SECURITY_ALLOW_EMBEDDING: "true"
     labels:
       wud.tag.include: '^\d+\.\d+\.\d+$'
+      homepage.group: Monitoring
+      homepage.name: Grafana
+      homepage.icon: grafana.png
+      homepage.href: https://grafana.atlocal.duckdns.org
+      homepage.description: Monitoring dashboards

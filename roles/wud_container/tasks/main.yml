@@ -13,3 +13,9 @@
       - /var/run/docker.sock:/var/run/docker.sock
     env:
       WUD_WATCHER_LOCAL_CRON: "0 1 * * *"
+    labels:
+      homepage.group: Monitoring
+      homepage.name: Whats-up-docker
+      homepage.icon: whats-up-docker.png
+      homepage.href: https://wud.atlocal.duckdns.org
+      homepage.description: Docker image version monitoring

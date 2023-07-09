@@ -20,3 +20,8 @@
       - /srv/focalboard/data:/opt/focalboard/data
     labels:
       wud.tag.include: '^\d+\.\d+\.\d+$'
+      homepage.group: Productivity
+      homepage.name: Focalboard
+      homepage.icon: focalboard.png
+      homepage.href: https://focalboard.atlocal.duckdns.org
+      homepage.description: Project task management

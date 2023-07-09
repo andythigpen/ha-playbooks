@@ -24,3 +24,5 @@
       become: yes
     - name: wud_container
       become: yes
+    - name: homepage_container
+      become: yes

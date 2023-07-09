@@ -30,3 +30,8 @@
       - /srv/prometheus/host_alerts.yml:/etc/prometheus/host_alerts.yml
     labels:
       wud.tag.include: '^v\d+\.\d+\.\d+$'
+      homepage.group: Monitoring
+      homepage.name: Prometheus
+      homepage.icon: prometheus.png
+      homepage.href: https://prometheus.atlocal.duckdns.org
+      homepage.description: Metrics collector

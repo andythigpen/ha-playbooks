@@ -17,3 +17,9 @@
     container_default_behavior: "no_defaults"
     volumes:
       - /srv/mealie:/app/data
+    labels:
+      homepage.group: Home
+      homepage.name: Mealie
+      homepage.icon: mealie.png
+      homepage.href: https://mealie.atlocal.duckdns.org
+      homepage.description: Recipes and meal plans

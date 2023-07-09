@@ -21,3 +21,8 @@
       - /srv/nginxproxymanager/letsencrypt:/etc/letsencrypt
     labels:
       wud.tag.include: '^\d+\.\d+\.\d+$'
+      homepage.group: Home
+      homepage.name: Nginx Proxy Manager
+      homepage.icon: nginx-proxy-manager.png
+      homepage.href: http://192.168.1.150:81
+      homepage.description: Proxy for all local sites

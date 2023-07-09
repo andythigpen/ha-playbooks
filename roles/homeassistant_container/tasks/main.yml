@@ -18,3 +18,8 @@
       TZ: "{{ timezone }}"
     labels:
       wud.tag.include: '^\d+\.\d+\.\d+$'
+      homepage.group: Home
+      homepage.name: Home Assistant
+      homepage.icon: home-assistant.png
+      homepage.href: https://ha.atlocal.duckdns.org
+      homepage.description: Home automation dashboard
