@@ -1,0 +1,6 @@
+- hosts: clock
+  roles:
+    - name: raspberrypi_os
+      become: yes
+    - name: prometheus_node
+      become: yes

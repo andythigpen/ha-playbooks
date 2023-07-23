@@ -1,6 +1,6 @@
 ---
-ansible_host: 192.168.1.140
-hostname: homeassistant
+ansible_host: 192.168.1.133
+hostname: clock
 ansible_python_interpreter: /usr/bin/python3
 prometheus_arch: armv7
 prometheus_node_arch: armv7

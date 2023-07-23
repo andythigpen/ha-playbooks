@@ -1,10 +1,7 @@
 [raspberrypi]
-ha_pi
+clock_pi
 sensorhub_pi
 backlight_pi
-
-[homeassistant]
-ha_pi
 
 [sensorhub]
 sensorhub_pi
@@ -14,3 +11,6 @@ backlight_pi
 
 [debian]
 debian_server
+
+[clock]
+clock_pi
