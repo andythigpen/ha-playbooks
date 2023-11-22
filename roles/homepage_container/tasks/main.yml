@@ -21,7 +21,7 @@
 - name: Create homepage container
   community.docker.docker_container:
     name: homepage
-    image: ghcr.io/benphelps/homepage:{{ homepage_tag }}
+    image: ghcr.io/gethomepage/homepage:{{ homepage_tag }}
     state: started
     restart_policy: "unless-stopped"
     user: root

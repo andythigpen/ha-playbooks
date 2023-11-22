@@ -5,7 +5,7 @@ init_rpi: False
 hyperion_deb: https://github.com/hyperion-project/hyperion.ng/releases/download/2.0.15/Hyperion-2.0.15-Linux-armv6l.deb
 homeassistant_version: "2023.5.*"
 python_version: "3.11.3"
-prometheus_version: "2.44.0"
+prometheus_version: "2.48.0"
 prometheus_arch: "armv6"
 prometheus_node_version: "1.6.0"
 timezone: America/New_York
