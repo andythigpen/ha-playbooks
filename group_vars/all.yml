@@ -2,10 +2,10 @@
 enable_spi: False
 enable_i2c: False
 init_rpi: False
-hyperion_deb: https://github.com/hyperion-project/hyperion.ng/releases/download/2.0.15/Hyperion-2.0.15-Linux-armv6l.deb
+hyperion_deb: https://github.com/hyperion-project/hyperion.ng/releases/download/2.0.16/Hyperion-2.0.16-Linux-armv6.deb
 homeassistant_version: "2023.5.*"
 python_version: "3.11.3"
-prometheus_version: "2.48.0"
+prometheus_version: "3.0.1"
 prometheus_arch: "armv6"
-prometheus_node_version: "1.6.0"
+prometheus_node_version: "1.8.2"
 timezone: America/New_York
