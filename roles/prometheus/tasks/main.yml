@@ -1,21 +1,21 @@
 ---
 - name: create prometheus directory
   tags: install
-  become: yes
+  become: true
   file:
     path: /opt/prometheus
     state: directory
 
 - name: download prometheus {{ prometheus_version }}
   tags: install
-  become: yes
+  become: true
   get_url:
     dest: /opt/prometheus/prometheus-{{ prometheus_version }}.tar.gz
     url: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ prometheus_arch }}.tar.gz
 
 - name: unarchive prometheus {{ prometheus_version }}
   tags: install
-  become: yes
+  become: true
   unarchive:
     dest: /opt/prometheus/
     src: /opt/prometheus/prometheus-{{ prometheus_version }}.tar.gz
@@ -26,7 +26,7 @@
 
 - name: Create a symbolic link
   tags: install
-  become: yes
+  become: true
   ansible.builtin.file:
     src: /opt/prometheus/prometheus-{{ prometheus_version }}.linux-{{ prometheus_arch }}
     dest: /opt/prometheus/current
@@ -36,37 +36,37 @@
 
 - name: copy config file
   tags: install
-  become: yes
+  become: true
   copy:
     src: files/prometheus.yml
     dest: /opt/prometheus/current/prometheus.yml
     owner: pi
     group: pi
-    mode: '0644'
+    mode: "0644"
 
 - name: copy alerts file
   tags: install
-  become: yes
+  become: true
   copy:
     src: files/host_alerts.yml
     dest: /opt/prometheus/current/host_alerts.yml
     owner: pi
     group: pi
-    mode: '0644'
+    mode: "0644"
 
 - name: copy systemd service file
   tags: install
-  become: yes
+  become: true
   copy:
     src: files/prometheus.service
     dest: /etc/systemd/system/prometheus.service
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: enable and start prometheus service
   tags: install
-  become: yes
+  become: true
   systemd:
     daemon_reload: yes
     daemon_reexec: yes

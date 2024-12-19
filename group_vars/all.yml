@@ -3,7 +3,7 @@ enable_spi: False
 enable_i2c: False
 init_rpi: False
 hyperion_deb: https://github.com/hyperion-project/hyperion.ng/releases/download/2.0.16/Hyperion-2.0.16-Linux-armv6.deb
-homeassistant_version: "2023.5.*"
+homeassistant_version: "2024.6.*"
 python_version: "3.11.3"
 prometheus_version: "3.0.1"
 prometheus_arch: "armv6"

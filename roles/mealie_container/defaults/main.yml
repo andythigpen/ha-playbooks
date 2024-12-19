@@ -1,3 +1,4 @@
 ---
-# all the tagged versions are old so just use latest
-mealie_tag: latest
+# all the tagged versions are old so just use previous for now
+# i haven't migrated to latest yet
+mealie_tag: previous

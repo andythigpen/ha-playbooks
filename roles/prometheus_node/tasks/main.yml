@@ -1,17 +1,20 @@
 ---
 - name: create prometheus node exporter source directory
+  become: true
   tags: install
   file:
     path: /opt/node_exporter
     state: directory
 
 - name: download prometheus node exporter
+  become: true
   tags: install
   get_url:
     dest: /opt/node_exporter/node_exporter-{{ prometheus_node_version }}.tar.gz
     url: https://github.com/prometheus/node_exporter/releases/download/v{{ prometheus_node_version }}/node_exporter-{{ prometheus_node_version }}.linux-{{ prometheus_node_arch }}.tar.gz
 
 - name: unarchive prometheus node exporter
+  become: true
   tags: install
   unarchive:
     dest: /opt/node_exporter/
@@ -20,6 +23,7 @@
     creates: /opt/node_exporter/node_exporter-{{ prometheus_node_version }}.linux-{{ prometheus_node_arch }}/node_exporter
 
 - name: Create a symbolic link
+  become: true
   tags: install
   ansible.builtin.file:
     src: /opt/node_exporter/node_exporter-{{ prometheus_node_version }}.linux-{{ prometheus_node_arch }}
@@ -27,6 +31,7 @@
     state: link
 
 - name: copy systemd service file
+  become: true
   tags: install
   copy:
     src: files/node_exporter.service
@@ -36,6 +41,7 @@
     mode: "0644"
 
 - name: enable and start prometheus node service
+  become: true
   tags: install
   systemd:
     daemon_reload: yes
