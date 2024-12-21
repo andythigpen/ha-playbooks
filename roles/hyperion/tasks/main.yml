@@ -4,14 +4,14 @@
 
 - name: install hyperion from deb
   tags: install
-  become: yes
+  become: true
   apt:
     deb: "{{ hyperion_deb }}"
     state: present
 
 - name: install inotify-tools
   tags: v4l2
-  become: yes
+  become: true
   apt:
     pkg:
       - inotify-tools
@@ -19,27 +19,27 @@
 
 - name: copy v4l2-settings
   tags: v4l2
-  become: yes
+  become: true
   copy:
     src: files/v4l2-settings.sh
     dest: /usr/local/bin/
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"
 
 - name: copy v4l2-settings service
   tags: v4l2
-  become: yes
+  become: true
   copy:
     src: files/v4l2-settings.service
     dest: /etc/systemd/system/
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: enable and start v4l2-settings service
   tags: v4l2
-  become: yes
+  become: true
   systemd:
     daemon_reload: yes
     daemon_reexec: yes
@@ -49,10 +49,40 @@
 
 - name: copy custom effects
   tags: hyperion
-  become: yes
+  become: true
   copy:
     src: files/custom-effects/
     dest: /usr/share/hyperion/effects/
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
+
+- name: copy hyperion script
+  tags: hyperion
+  become: true
+  copy:
+    src: files/hyperion.sh
+    dest: /usr/local/bin/
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: copy hyperion service
+  tags: hyperion
+  become: true
+  copy:
+    src: files/hyperion@.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: enable and start hyperion service
+  tags: hyperion
+  become: true
+  systemd:
+    daemon_reload: yes
+    daemon_reexec: yes
+    state: started
+    enabled: yes
+    name: hyperion@pi.service
